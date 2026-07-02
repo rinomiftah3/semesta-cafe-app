@@ -1,3 +1,6 @@
+/* ==========================================
+   NOTIFICATION BELL - Tombol toggle push notification
+   ========================================== */
 .notif-bell-wrapper {
   position: relative;
   display: inline-flex;
@@ -5,25 +8,44 @@
 }
 
 .notif-bell-btn {
-  background: none;
+  /* TAMBAHAN: sebelumnya background transparan (menyatu dengan navbar
+     hijau, jadi ikonnya kurang kelihatan). Sekarang dikasih lingkaran
+     putih solid + bayangan tipis, supaya bell selalu kontras di
+     background manapun (navbar hijau ataupun panel admin putih) --
+     sama seperti gaya tombol Keranjang yang juga berbentuk pill putih/oranye. */
+  background: #FFFFFF;
   border: none;
   cursor: pointer;
-  font-size: 20px;
-  padding: 6px;
+  padding: 8px;
   border-radius: 50%;
-  transition: background 0.2s, transform 0.2s;
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  /* TAMBAHAN: warna ikon kuning keemasan/oranye khas brand Semesta Coffee
+     (#F5A623 -- warna yang sama dipakai tombol Keranjang), menggantikan
+     warna coklat (#4a2c2a) yang tidak nyambung dengan tema aplikasi. */
+  color: #F5A623;
 }
 
-.notif-bell-btn:hover {
-  background: rgba(74, 44, 42, 0.1);
+.notif-bell-btn:hover:not(:disabled) {
+  background: #FFF8ED;
   transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.22);
 }
 
+.notif-bell-btn:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}
+
+/* TAMBAHAN: saat notifikasi aktif, tambahkan animasi lonceng "berdering"
+   sekali sebagai feedback visual, warna tetap kuning/oranye brand supaya
+   konsisten (bukan ganti-ganti warna tiap status, cukup lingkaran putihnya
+   yang jadi penanda utama). */
 .notif-bell-btn.notif-active {
   animation: notif-ring 0.4s ease;
 }
@@ -37,8 +59,8 @@
 .notif-spinner {
   width: 16px;
   height: 16px;
-  border: 2px solid #ccc;
-  border-top-color: #4a2c2a;
+  border: 2px solid rgba(245, 166, 35, 0.25);
+  border-top-color: #F5A623;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
   display: inline-block;
@@ -52,9 +74,10 @@
   position: absolute;
   top: calc(100% + 8px);
   right: 0;
-  background: #2d1a18;
+  background: #1E293B;
   color: #fff;
   font-size: 12px;
+  font-weight: 600;
   padding: 6px 10px;
   border-radius: 8px;
   white-space: nowrap;
@@ -68,11 +91,20 @@
   top: -5px;
   right: 10px;
   border: 5px solid transparent;
-  border-bottom-color: #2d1a18;
+  border-bottom-color: #1E293B;
   border-top: none;
 }
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(-4px); }
   to { opacity: 1; transform: translateY(0); }
+}
+
+/* TAMBAHAN: khusus saat bell ini dipakai di dalam AdminSidebar (latar
+   belakang sudah putih/terang), lingkaran putihnya dikasih border tipis
+   supaya tetap kelihatan batasnya (tidak menyatu polos dengan background),
+   warna ikon tetap kuning/oranye brand yang sama -- lihat pemakaian
+   class "admin-notif-bell" di AdminSidebar.jsx. */
+.admin-notif-bell .notif-bell-btn {
+  border: 1px solid #F1F5F9;
 }

@@ -1,5 +1,10 @@
 import { useState, useEffect } from 'react';
 import { subscribePushNotification, unsubscribePushNotification, isSubscribed } from '../utils/pushNotification';
+// TAMBAHAN: Ganti ikon lonceng dari emoji (🔔/🔕) ke react-icons, supaya
+// tampilannya konsisten dengan ikon lain di seluruh aplikasi (FaShoppingCart
+// di Navbar, FaChartBar dkk di AdminSidebar) dan tidak bergantung pada
+// font emoji bawaan OS yang bisa beda-beda bentuknya di tiap perangkat.
+import { FaBell, FaBellSlash } from 'react-icons/fa';
 import './NotificationBell.css';
 
 const NotificationBell = ({ role = 'user' }) => {
@@ -43,9 +48,11 @@ const NotificationBell = ({ role = 'user' }) => {
         {loading ? (
           <span className="notif-spinner" />
         ) : subscribed ? (
-          <span>🔔</span>
+          // TAMBAHAN: FaBell (lonceng terisi) menggantikan emoji 🔔 saat aktif
+          <FaBell size={16} />
         ) : (
-          <span>🔕</span>
+          // TAMBAHAN: FaBellSlash (lonceng dicoret) menggantikan emoji 🔕 saat nonaktif
+          <FaBellSlash size={16} />
         )}
       </button>
       {showTooltip && (

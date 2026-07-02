@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaShoppingCart } from "react-icons/fa"; 
+import NotificationBell from "../components/NotificationBell";
 import "../styles/navbar.css";
 
 export default function Navbar({ cartCount, onOpenCart }) {
@@ -82,6 +83,11 @@ export default function Navbar({ cartCount, onOpenCart }) {
             </div>
             <span className="cart-label-text">Keranjang</span>
           </button>
+
+          {/* TAMBAHAN: Bell notifikasi push untuk pelanggan (role="user").
+              Sebelumnya komponen ini sudah dibuat tapi tidak pernah
+              dipasang di manapun, jadi tidak pernah muncul. */}
+          <NotificationBell role="user" />
 
           <button
             className={`nav-hamburger ${menuOpen ? "is-active" : ""}`}

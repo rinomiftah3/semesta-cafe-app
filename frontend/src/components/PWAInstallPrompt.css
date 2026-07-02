@@ -93,6 +93,12 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
+  /* TAMBAHAN: flex + gap supaya ikon (FaDownload/FaMobileAlt) dan teks
+     tombol sejajar rapi di tengah, bukan menumpuk/berdempetan. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
 }
 
 .pwa-btn-primary {
@@ -126,11 +132,18 @@
   border-radius: 8px;
   padding: 10px 12px;
   border: 1px solid #e8d8cc;
+  /* TAMBAHAN: supaya ikon FaShareSquare sejajar rapi di tengah baris teks,
+     bukan naik/turun dari baseline teks seperti karakter "⎙" sebelumnya. */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
 .pwa-share-icon {
-  font-size: 16px;
+  font-size: 15px;
   color: #4a2c2a;
+  flex-shrink: 0;
 }
 
 /* ===== Offline Banner ===== */

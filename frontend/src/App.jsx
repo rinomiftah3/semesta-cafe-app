@@ -25,6 +25,7 @@ import Contact from "./user/Contact";
 import Footer from "./user/Footer";
 import Cart from "./user/Cart";
 import Reservation from "./user/Reservation";
+import PWAInstallPrompt from "./components/PWAInstallPrompt";
 
 // ==========================================
 // TAMBAHAN: OPTIMASI WEB - LAZY LOADING / CODE SPLITTING (KOMPONEN ADMIN)
@@ -267,6 +268,11 @@ function HalamanUser() {
       )}
 
       {toast && <div className="toast-notification">{toast}</div>}
+
+      {/* TAMBAHAN: Prompt "Install ke layar utama" untuk PWA. Sebelumnya
+          komponen ini sudah dibuat tapi tidak pernah dipasang di manapun,
+          jadi tidak pernah muncul walau kriteria PWA-nya sudah terpenuhi. */}
+      <PWAInstallPrompt />
     </>
   );
 }

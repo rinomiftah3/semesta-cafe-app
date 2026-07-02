@@ -9,6 +9,7 @@ import {
   FaChevronLeft, 
   FaChevronRight 
 } from 'react-icons/fa';
+import NotificationBell from '../components/NotificationBell';
 import './Admin.css';
 
 // ==========================================
@@ -214,6 +215,14 @@ export default function AdminSidebar({ children }) {
           oleh browser (karena nanti di App.jsx komponen halaman admin akan
           memakai React.lazy() untuk code splitting / lazy loading). */}
       <div className="admin-content">
+        {/* TAMBAHAN: Bell notifikasi push untuk admin (role="admin").
+            Backend (sendNotification('admin', ...) di index.js) sudah
+            mengirim notifikasi tiap ada pesanan/reservasi baru, tapi
+            komponen ini sebelumnya tidak pernah dipasang di manapun
+            sehingga admin tidak pernah bisa aktifkan/lihat notifikasinya. */}
+        <div className="admin-notif-bell" style={{ display: 'flex', justifyContent: 'flex-end', padding: '15px 20px 0' }}>
+          <NotificationBell role="admin" />
+        </div>
         <Suspense fallback={<PageLoadingFallback />}>
           {children}
         </Suspense>
