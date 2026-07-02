@@ -1,4 +1,4 @@
-const BACKEND_URL = import.meta.env.VITE_API_URL || 'semesta-cafe-app-production-08e0.up.railway.app';
+const BACKEND_URL = import.meta.env.VITE_API_URL || 'https://semesta-cafe-app-production-08e0.up.railway.app';
 
 export async function subscribePushNotification(role = 'user') {
   try {
